@@ -51,14 +51,14 @@ for i = 1:imax
 
 figure(1)
 
-plot(Temperature,Depth,'k--','linewidth',2)
+plot(T,z,'k','linewidth',2)
 title('subsurface annual thermal range to 15 meters', 'fontname', 'arial', 'fontsize', 18)
 xlabel('temperature (ºC)','fontname','arial','fontsize',18)
     ylabel('depth below the surface (m)','fontname','arial','fontsize',18)
     set(gca,'fontsize',16,'fontname','arial','YDIR','reverse')
-    axis([Ts_bar-dT-1 Ts_bar+dT+1 0 100])
+    axis([Ts_bar-dT-1 Ts_bar+dT+1 0 15])
 hold on
-plot(T,z,'r')
+plot(T,z,'k')
 hold on
 plot(Tzero,z,'k--')
 hold off
