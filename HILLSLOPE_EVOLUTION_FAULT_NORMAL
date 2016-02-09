@@ -2,6 +2,8 @@
 %% WRITTEN BY COLE C. PAZAR, ON FEBURARY 8TH, 2016.
 %  1D diffusion staggered variables code style inspired by RSA
 
+%  normal faulting !!!
+
 %  clear all
 
 clearvars
