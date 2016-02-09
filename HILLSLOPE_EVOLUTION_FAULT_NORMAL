@@ -10,7 +10,7 @@ clf
 
 %% initialize
 
-k = 0.02;     % hillslope diffusivity [=] m^2/year
+k = 0.1;     % hillslope diffusivity [=] m^2/year
 
 % distance array [=] m
 
@@ -25,7 +25,7 @@ slopedegrees = -25;      % slope
 m = tand(slopedegrees);  % slope re-calculated
 zmid = 5000-40;              % elevation at middle of an already eroded hillslope
 % zb = (m.*x) + zmid;      % topography
-zb = -((k/10).*(x+100).^2) + zmid;  % topography
+zb = -((k/100).*(x+100).^2) + zmid;  % topography
 
 H = zeros(1,length(x));  % soil thickness
 z = zb+H;                % net
@@ -55,9 +55,9 @@ tplot = tmax/nplots;
 dipdegrees = -70;
 dip = tand(dipdegrees);
 fault = (dip.*(x+300))+zmid-2000;
-horzslip = 200;              % on average 20 meters of slip every 1000 years
+horzslip = 100;              % on average 20 meters of slip every 1000 years
 vertslip = horzslip*(tand(dipdegrees)-tand(slopedegrees)); % accounts for geometry of the fault
-slipperiod = 20000;          % fault period: every 10 ka
+slipperiod = 20000;          % fault period: every 20 ka
 
 
 %% run
@@ -140,7 +140,7 @@ for i=1:length(t)
     
     subplot(2,1,2)
     plot(x,H,'g','linewidth',3)
-    axis([-2000 2000 0 30])
+    % axis([-2000 2000 0 30])
     ylabel('soil thickness [m]','fontsize',15)
     set(gca,'fontsize',15)
     grid on
