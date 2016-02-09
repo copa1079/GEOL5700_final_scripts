@@ -1,0 +1,164 @@
+%% CODE FOR HILLSLOPE EVOLUTION WITH A FAULTING LANDSCAPE
+%% WRITTEN BY COLE C. PAZAR, ON FEBURARY 8TH, 2016.
+%  1D diffusion staggered variables code style inspired by RSA
+
+clear all
+clearvars
+figure(1)
+clf
+
+%% initialize
+
+k = 0.02;     % hillslope diffusivity [=] m^2/year
+
+% depth array [=] m
+
+xmin = -1000;
+xmax = 1000;
+dx = 1;
+x = xmin:dx:xmax;
+
+% initial topography and soil thickness [=] m
+
+slopedegrees = -25;      % slope 
+m = tand(slopedegrees);  % slope re-calculated
+zmid = 1000;              % elevation at middle of an already eroded hillslope
+% zb = (m.*x) + zmid;      % topography
+zb = -((k/10).*(x+100).^2) + zmid;  % topography
+
+H = zeros(1,length(x));  % soil thickness
+z = zb+H;                % net
+
+% weathering and transport parameters
+
+wnot = 10^-3; % [=] m/yr
+wstar = 0.2;  % scale for weathering rate
+A = 0.01;
+hstar = 0.2;
+wdot = zeros(1,length(x)); % sets up array for weathering rate
+
+% channel incision
+
+edot = 10^-3; % [=] m/yr
+
+% temporal array
+
+tmax = 110000;
+dt = 1;
+t = 0:dt:tmax;
+nplots = tmax/1000;
+tplot = tmax/nplots;
+
+% fault w/random variables
+
+dipdegrees = -45;
+dip = tand(dipdegrees);
+fault = (dip.*(x+300))+zmid-1000;
+horzslip = 100; % 100 meters of slip each time
+vertslip = horzslip*(tand(dipdegrees)-tand(slopedegrees)); % accounts for geometry of the fault
+slipperiod = 5000; % fault period: every 5 ka
+
+
+%% run
+
+for i=1:length(t)
+
+    wdot=wnot.*exp(-H./wstar); % exponential weathering rate
+    
+       % or :
+       % humped weathering rate
+       % wdot=wnot.*exp(H./wstar)+((A*H./wstar).*exp(-H./wstar));
+
+    slope = diff(z)/dx;
+    
+    % find peaks and troughs
+    
+    xedge = x(1:end-1)+(dx/2);
+    lt = find(slope<0); % slopes with left peaks
+    rt = find(slope>0); % slopes with right peaks
+
+    hedge = zeros(size(slope)); % sets up matrix sizes for edge variables
+    hedge(1) = H(2);
+    hedge(end)= H(end-1);
+    hedge(rt) = H(rt+1);
+    hedge(lt) = H(lt);
+    
+    q = -k.*slope.*(1-(exp(-hedge./hstar))); % discharge 
+    
+    q = [q(1) q q(end)]; % boundary conditions
+    
+    % develop topography and conserve mass
+    dh_dt = wdot-diff(q)/dx;
+    H = H + (dh_dt*dt);
+    H = max(0,H); % for another boundary setup...
+    zb = zb - (wdot*dt);
+    z = H+zb;
+    
+    % now set up the faulting
+    faultzone = find(fault<=zb);
+    if t(i)~=0 & (rem(t(i),slipperiod)==0) % remove the (i) on slipperiod to fix?
+     % faultstart=find(fault<=zb);
+     % if t(i)==20000
+        slip=ones(size(faultzone)).*vertslip;
+    
+        for j=1:length(faultzone)
+            if (zb(faultzone(j))+slip(j))<=fault(faultzone(j))
+                zb(faultzone(j))=fault(faultzone(j));
+                z(faultzone(j))=fault(faultzone(j));
+                H(faultzone(j))=0;
+            
+            else
+                zb(faultzone(j))=zb(faultzone(j))+slip(j);
+                z(faultzone(j))=z(faultzone(j))+slip(j);  
+                
+            end
+            
+        end
+      
+        end
+   
+    if(rem(t(i),tplot)==0)
+        
+    figure(1)
+    subplot(3,1,1)
+    plot(x,z,'k','linewidth',2)
+    hold on
+    plot(x,zb,'r','linewidth',2)
+    hold on
+    plot(x(faultzone),fault(faultzone),'b--','linewidth',2)
+    ht=text(-950,800,['  ',num2str(t(i)), ' years  '],'fontsize',18); % this makes the years print on screen
+    axis([-1000 1000 -1500 1200]) 
+    title('landscape evoltuion of a 45º normal-faulted, initially parabolic hillslope, 100 m of horizonatal slip every 5 ka','fontsize',20)
+    xlabel('distance [m]','fontsize',15)
+    ylabel('elevation [m]','fontsize',15)
+    set(gca,'fontsize',15)
+    
+    legend('soil','bedrock','fault plane','Location','northeast')
+
+    hold off
+    
+    subplot(3,1,2)
+    plot(x,H,'k','linewidth',2)
+    plot(x,2*ones(length(x)),'k--','linewidth',1.5) % mark line for the next plot
+    axis([-1000 1000 0 30])
+    ylabel('soil depth [m]','fontsize',15)
+    set(gca,'fontsize',15)
+    grid on
+    
+    subplot(3,1,3)
+    plot(x,H*100,'k','linewidth',2)
+    plot(x,200*ones(length(x)),'k--','linewidth',1.5) % marker line @ 2 meters
+    axis([-1000 1000 0 220])
+    title('soil depth as a function of distance (above: 0 - 30 m, below: 0 - 2.2 m)','fontsize',20)
+    xlabel('distance [m]','fontsize',15)
+    ylabel('soil depth [cm]','fontsize',15)
+    set(gca,'fontsize',15)
+    grid on
+    
+    drawnow
+    
+    end
+   
+end
+
+%% end of code
