@@ -48,7 +48,7 @@ wdot = zeros(1,length(x)); % sets up array for weathering rate
 
 % channel incision
 
-edot = 10^-3; % [=] m/yr
+edot = 10^-2; % [=] m/yr
 
 % temporal array
 
@@ -106,34 +106,50 @@ for i=1:length(t)
     if(rem(t(i),tplot)==0)
         
     figure(1)
-    subplot(2,1,1)
+    %subplot(2,1,1)
+    subplot('position',[0.08 0.4 0.85 0.55])
     plot(x/1000,z,'g','linewidth',3)
     hold on
     plot(x/1000,zb,'k','linewidth',2)
     hold on
-    plot(x/1000,topo, 'r','linewidth',1)
-    ht=text(24,3300,['  ',num2str(t(i)/1000), ' ka '],'fontsize',18); % this makes the years print on screen
-    axis([0 28 2500 4500]) 
-    title('Landscape evoltuion of a topographic transect, Sawatch Range, Colorado, kappa = 0.1 m^2/year, over 1 Ma','fontsize',20)
+    plot(x/1000,topo,'r','linewidth',1.25)
+    ht=text(12,4000,['  ',num2str(t(i)/1000), ' ka '],'fontsize',18); % this makes the years print on screen
+    axis([0 28 2900 4450]) 
+    title('Landscape evolution of a topographic transect, Sawatch Range, Colorado, kappa = 0.1 m^2/year, over 1 Ma','fontsize',20)
     ylabel('relative elevation [m]','fontsize',18)
     set(gca,'fontsize',18)
     
-    legend('regolith','topography','initial profile','Location','southeast')
-
-    hold off
+    legend('Regolith','Bedrock','Initial profile','Location','southeast')
     
-    subplot(2,1,2)
+    hold off 
+    %subplot('position',[0.08 0.08 0.85 0.25])
+    %RI = imref2d(size(I));
+    %RI.XWorldLimits = [0 3];
+    %RI.YWorldLimits = [2 5];
+    %subplot('position',[0.08 0.4 0.4 0.4])
+    
+    %subplot(2,1,2)
+    subplot('position',[0.08 0.08 0.85 0.25])
     plot(x/1000,H,'g','linewidth',3)
-    axis([0 28 0 200])
+    axis([0 28 0 150])
     xlabel('north-to-south distance along profile[km]','fontsize',18)
     ylabel('regolith thickness [m]','fontsize',18)
     set(gca,'fontsize',18)
     grid on
-
+        
     drawnow
     
     end
    
 end
+
+%   this part of the code is in case you'd like to read in
+%   the image of the transect across a DEM map of the surface. 
+
+%    figure(2)
+%    clf
+%    I = imread('topographic_transect_sawatch.jpg');
+%    imshow(I);
+
 
 %% end of code
