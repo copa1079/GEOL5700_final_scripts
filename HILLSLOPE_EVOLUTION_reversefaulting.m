@@ -1,5 +1,5 @@
 %% CODE FOR HILLSLOPE EVOLUTION WITH A FAULTING LANDSCAPE
-%% WRITTEN BY COLE C. PAZAR, ON FEBURARY 8TH, 2016.
+%% WRITTEN BY COLE C. PAZAR, ON FEBURARY 10TH, 2016.
 %  1D diffusion staggered variables code style inspired by RSA
 
 %  for a reverse fault now
@@ -46,10 +46,10 @@ edot = 10^-3; % [=] m/yr
 
 % temporal array
 
-tmax = 110000;
+tmax = 118000;
 dt = 1;
 t = 0:dt:tmax;
-nplots = 110;
+nplots = 59;
 tplot = tmax/nplots;
 
 % faulting
@@ -126,20 +126,20 @@ for i=1:length(t)
     %subplot(3,1,1)
     subplot('position',[0.08 0.4 0.85 0.55])
  %  subplot('position',[left bottom width height])
-    plot(x,topo,'k--','linewidth',1.5) % initial condition
+    plot(x,topo,'b--','linewidth',1.5) % initial condition
     hold on
     plot(x,z+2,'g','linewidth',4)
     hold on
     plot(x,zb,'k','linewidth',2)
     hold on
-    plot(x(faultzone),fault(faultzone),'r-.','linewidth',2)
+    plot(x(faultzone),fault(faultzone),'c-.','linewidth',2)
     ht=text(450,900,['  ',num2str(t(i)/(1000)), ' ka '],'fontsize',18); % this makes the years print on screen
     axis([-2000 2000 0 2000]) 
-    title('1D landscape evolution model of a 40º reverse-faulted, initially parabolic hillslope, 100 m of slip every 20 ka','fontsize',20)
-    xlabel('distance [m]','fontsize',18)
-    ylabel('elevation [m]','fontsize',18)
-    set(gca,'fontsize',18)
-    legend('initial condition','regolith','topography','fault plane','Location','northeast')
+    title('1D landscape evolution model of a 45º reverse-faulted hillslope, 100 m of slip every 20 ka','fontsize',16)
+    xlabel('Distance [m]','fontsize',18)
+    ylabel('Elevation [m]','fontsize',18)
+    set(gca,'fontsize',16)
+    legend('Initial profile','Regolith','Bedrock','Fault plane','Location','northeast')
 
     hold off
     
@@ -148,8 +148,9 @@ for i=1:length(t)
  %  subplot('position',[left bottom width height])
     plot(x,H+2,'g','linewidth',4)
  %  axis([-2000 2000 0 15])
-    ylabel('regolith thickness [m]','fontsize',18)
-    set(gca,'fontsize',18)
+    %title('Regolith depth as a function of distance','fontsize',16)
+    ylabel('Regolith thickness [m]','fontsize',18)
+    set(gca,'fontsize',16)
     grid on
     
     drawnow
