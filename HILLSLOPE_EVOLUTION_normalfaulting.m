@@ -28,6 +28,7 @@ m = tand(slopedegrees);  % slope re-calculated
 zmid = 5000-40;              % elevation at middle of an already eroded hillslope
 % zb = (m.*x) + zmid;      % topography
 zb = -((k/100).*(x+100).^2) + zmid;  % topography
+topo = -((k/100).*(x+100).^2) + zmid;  % topography
 
 H = zeros(1,length(x));  % soil thickness
 z = zb+H;                % net
@@ -37,16 +38,16 @@ z = zb+H;                % net
 wnot = 10^-3; % [=] m/yr
 wstar = 1;  % scale for weathering rate, 1 meter
 A = 0.01;
-hstar = 0.2;
+hstar = 1;
 wdot = zeros(1,length(x)); % sets up array for weathering rate
 
 % channel incision
 
-edot = 10^-3; % [=] m/yr
+edot = 10^-2; % [=] m/yr
 
 % temporal array
 
-tmax = 200000;
+tmax = 188000;
 dt = 1;
 t = 0:dt:tmax;
 nplots = tmax/1000;
@@ -54,7 +55,7 @@ tplot = tmax/nplots;
 
 % fault w/random variables
 
-dipdegrees = -70;
+dipdegrees = -75;
 dip = tand(dipdegrees);
 fault = (dip.*(x+300))+zmid-2000;
 horzslip = 100;              % on average 20 meters of slip every 1000 years
@@ -123,36 +124,42 @@ for i=1:length(t)
     if(rem(t(i),tplot)==0)
         
     figure(1)
-    subplot(2,1,1)
+    %subplot(2,1,1)
+    subplot('position',[0.08 0.4 0.85 0.55])
+    plot(x,topo,'r--','linewidth',1.5)
+    hold on
     plot(x,z+40,'g','linewidth',3)
     hold on
     plot(x,zb,'k','linewidth',2)
     hold on
-    plot(x(faultzone),fault(faultzone),'r-.','linewidth',2)
-    ht=text(-1800,3800,['  ',num2str(t(i)), ' years  '],'fontsize',18); % this makes the years print on screen
-    axis([-2000 2000 -2000 5000]) 
-    title('landscape evoltuion of a 75º normal-faulted, initially parabolic hillslope, 100 m of horizonatal slip every 20 ka','fontsize',20)
-    xlabel('distance [m]','fontsize',15)
-    ylabel('elevation [m]','fontsize',15)
-    set(gca,'fontsize',15)
+    plot(x(faultzone),fault(faultzone),'c-.','linewidth',2)
+    ht=text(-1800,4250,['  ',num2str(t(i)/1000), ' ka '],'fontsize',18); % this makes the years print on screen
+    axis([-2000 2000 -400 5400]) 
+    title('Landscape evoltuion of a 75º normal-faulted hillslope, 100 m of horizonatal slip every 20 ka','fontsize',16)
+    xlabel('Distance [m]','fontsize',18)
+    ylabel('Elevation [m]','fontsize',18)
+    set(gca,'fontsize',16)
     
-    legend('soil','bedrock','fault plane','Location','northeast')
+    legend('Initial profile','Regolith','Bedrock','Fault plane','Location','northeast')
 
     hold off
     
-    subplot(2,1,2)
+    %subplot(2,1,2)
+    subplot('position',[0.08 0.08 0.85 0.25])
     plot(x,H,'g','linewidth',3)
     % axis([-2000 2000 0 30])
-    ylabel('soil thickness [m]','fontsize',15)
-    set(gca,'fontsize',15)
+    % title('Regolith depth as a function of distance','fontsize',16)
+    ylabel('Regolith thickness [m]','fontsize',18)
+    xlabel('Distance [m]','fontsize',18)
+    set(gca,'fontsize',16)
     grid on
     
 %     subplot(3,1,3)
 %     plot(x,H*100,'g','linewidth',3)
 %     axis([-2500 2500 0 100])
-%     title('soil depth as a function of distance (above: 0 -- 30 m, below: 0 - 1 m)','fontsize',20)
+%     title('regolith depth as a function of distance','fontsize',20)
 %     xlabel('distance [m]','fontsize',15)
-%     ylabel('soil depth [cm]','fontsize',15)
+%     ylabel('regolith depth [cm]','fontsize',15)
 %     set(gca,'fontsize',15)
 %     grid on
     
