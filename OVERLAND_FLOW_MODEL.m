@@ -22,7 +22,7 @@ clf
  
     n = 0.1;
     
-% rainfall constants
+% rainfall constants ( for changing the storm as well )
  
     minutes        = 15;                 % duration of the storm in minutes
     stormlength    = 60*minutes;         % length of storm in seconds
@@ -153,7 +153,7 @@ for i = 2:imax
             subplot(1,3,1)
             plot(x,smoothH*100, 'k')
             yy = [bottomline, fliplr(smoothH*100)];
-            fill(xx,yy,[.3 .2 .6]);
+            fill(xx,yy,[.2 .3 .8]);
  
         % plot formatting
             
@@ -168,7 +168,7 @@ for i = 2:imax
         % flux plot
         
             subplot(1,3,2)
-            plot(x,Q*10000,'Color',[.6 .3 .4],'linewidth', 4)
+            plot(x,Q*10000,'Color',[.2 .3 .8],'linewidth', 4)
             str = {'discharge per unit width (cm^2/s)'};         
             title('discharge over time');
             ylabel(str);
@@ -179,19 +179,19 @@ for i = 2:imax
          % hydrograph plot
          
             subplot(1,3,3)
-            plot(t/3600,Hydro_1*10000, 'linewidth', 3)
+            plot(t/3600,Hydro_1*10000,'r','linewidth', 3)
             hold on
-            plot(t/3600,Hydro_2*10000, 'linewidth', 3)
-            plot(t/3600,Hydro_3*10000, 'linewidth', 3)
+            plot(t/3600,Hydro_2*10000,'b','linewidth', 3)
+            plot(t/3600,Hydro_3*10000,'g','linewidth', 3)
             title('hydrograph monitoring')
             xlabel('time (hours)');
-            legend('top of slope','middle of slope','bottom of slope',...
+            legend('bottom of slope','middle of slope','top of slope',...
             'location','northwest')
             ylabel(str);
             set(gca,'fontsize',18,'fontname','arial')
             axis([0 tmax/3600 0 65])
             
-        pause(0.01)
+        pause(0.05)
         hold off
         
     end 
