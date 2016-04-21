@@ -1,8 +1,7 @@
 % go to: https://github.com/copa1079/GEOL5700_final_project   for more outputs etc.
 % FINAL PROJECT, model 11
-%
 %% UPDATED CODE FOR CORAL GROWTH MODEL         COLE C. PAZAR FOR: GEOL 5700
-
+% eustatic/tectonic coral reef growth
 % UPLIFTING TOPOGRAPHY + CHANGING SEA LEVEL
 % HUON PINENSULA APPLICATION
 
