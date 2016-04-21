@@ -1,10 +1,7 @@
 %% UPDATED CODE FOR CORAL GROWTH MODEL
-%% UPLIFTING TOPOGRAPHY + CHANGING SEA LEVEL
+%% UPLIFTING TOPOGRAPHY + SINUSOIDAL SEA LEVEL
 %% COLE C. PAZAR GEOL 5700
-% load Pleist_oxy.txt
-% load pleist_del18O.txt
-% load ox_200.txt
-% load yrs_200.txt
+
 %% Initialize
 clear all
 YRs = 3600*24*365; % year in seconds
