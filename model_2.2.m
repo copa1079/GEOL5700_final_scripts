@@ -3,8 +3,6 @@
 % Finite Difference Model FTCS Diffusion
 % Cole C. Pazar, GEOL5700, January 2016
 
-% parameter optimization done with the chi-squared value
-
 %% modeling the rest of the data
 clear all
 
