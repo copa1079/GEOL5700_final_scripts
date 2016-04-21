@@ -104,21 +104,16 @@ for i=1:length(t)
      % faultstart=find(fault<=zb);
      % if t(i)==20000
         slip=ones(size(faultzone)).*vertslip;
-    
         for j=1:length(faultzone)
             if (zb(faultzone(j))+slip(j))<=fault(faultzone(j))
                 zb(faultzone(j))=fault(faultzone(j));
                 z(faultzone(j))=fault(faultzone(j));
                 H(faultzone(j))=0;
-            
             else
                 zb(faultzone(j))=zb(faultzone(j))+slip(j);
                 z(faultzone(j))=z(faultzone(j))+slip(j);  
-                
             end
-            
         end
-      
         end
    
     if(rem(t(i),tplot)==0)
@@ -153,15 +148,6 @@ for i=1:length(t)
     xlabel('Distance [m]','fontsize',18)
     set(gca,'fontsize',16)
     grid on
-    
-%     subplot(3,1,3)
-%     plot(x,H*100,'g','linewidth',3)
-%     axis([-2500 2500 0 100])
-%     title('regolith depth as a function of distance','fontsize',20)
-%     xlabel('distance [m]','fontsize',15)
-%     ylabel('regolith depth [cm]','fontsize',15)
-%     set(gca,'fontsize',15)
-%     grid on
     
     drawnow
     
