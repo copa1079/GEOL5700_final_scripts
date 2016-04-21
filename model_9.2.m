@@ -1,4 +1,5 @@
 %% code to simmulate the ordering of sand tracjetories into ripples
+% 1d ripples vanilla
 
 clear global
 clearvars
