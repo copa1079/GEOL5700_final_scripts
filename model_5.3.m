@@ -1,11 +1,14 @@
-%%   CLEANED UP GLACIER MODEL FOR CLEAR CREEK
-%
+%%   FINAL GLACIER MODEL FOR CLEAR CREEK
+%    Honors Thesis MS#2260 from CU Boulder
 %    UPDATED ON: March 31st, 2016
 %
 %    1D FTCS STAGGERED GRID NUMERICAL MODEL: CLEAR CREEK GLACIER
 %    All of the code written in SI units
 %
 %    AUTHORS:    COLE C. PAZAR    and   ROBERT S. ANDERSON
+%
+%    The numerical models for Lake Creek, Pine Creek, and 
+%    Snowmass Creek are available upon request to my e-mail.
 %
 %%  model basics
     clear global % 
