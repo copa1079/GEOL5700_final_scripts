@@ -67,7 +67,6 @@ horzslip = 200;              % on average 20 meters of slip every 1000 years
 vertslip = horzslip*(tand(dipdegrees)-tand(slopedegrees)); % accounts for geometry of the fault
 slipperiod = 20000;          % fault period: every 10 ka
 
-
 %% run
 
 for i=1:length(t)
@@ -146,10 +145,9 @@ end
 %   this part of the code is in case you'd like to read in
 %   the image of the transect across a DEM map of the surface. 
 
-%    figure(2)
-%    clf
-%    I = imread('topographic_transect_sawatch.jpg');
-%    imshow(I);
-
+   figure(2)
+   clf
+   I = imread('topographic_transect_sawatch.jpg');
+   imshow(I);
 
 %% end of code
