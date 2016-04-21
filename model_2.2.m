@@ -174,14 +174,13 @@ end
 
 %% finalize plots
 
-%figure(2)
-%plot(timeplot/(3600*24*365),chisq,'linewidth',2)
-%title('Statistical fit: transient step-heating to -1 ºC','fontname',...
-%    'arial', 'fontsize', 16)
-%    axis([60 150 0 0.1])
-%    grid on
-%        xlabel('Time (years)','fontname','arial','fontsize',16)
-%        ylabel('X^2 (chi-squared value)','fontname','arial','fontsize',16)
-%        set(gca,'fontsize',16,'fontname','arial')
+figure(2)
+plot(timeplot/(3600*24*365),chisq,'linewidth',2)
+title('Statistical fit: transient step-heating to -1 ºC','fontname','arial', 'fontsize', 16)
+    axis([60 150 0 0.1])
+    grid on
+        xlabel('Time (years)','fontname','arial','fontsize',16)
+        ylabel('X^2 (chi-squared value)','fontname','arial','fontsize',16)
+        set(gca,'fontsize',16,'fontname','arial')
 
 %% end of code
