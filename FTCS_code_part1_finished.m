@@ -1,7 +1,9 @@
 %% Borehole Thermal Profiles in Cape Thompson, Alaska
-
+% This code takes real data and fits the thermal perturbation to the 
+% borehole data (figure 1), doing a chi-squared regression (figure 2)
 % Finite Difference Model FTCS Diffusion
 % Cole C. Pazar, GEOL5700, January 2016
+% with help from Robert S. Anderson
 
 %% Open Figures
 clear all
@@ -10,7 +12,7 @@ clf
 figure(2) % chi-squared
 clf
 
-load cape_thompson.txt % loads the arctic data, must be in the same file
+load cape_thompson.dat % loads the arctic data, must be in the same file
 
 zdata = cape_thompson(:,1); % grabs the data from column 1
 Tdata = cape_thompson(:,2); % grabs the data from column 2
