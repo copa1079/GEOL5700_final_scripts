@@ -1,3 +1,3 @@
 # geoscience-modeling
 
-This repository contains only MATLAB (.m) csripts for the GEOL5700 class. Other PYTHON (.py) scripts can be found in my other repo: geoscience-modeling.py.
+This repository contains mostly MATLAB (.m) scripts for the GEOL5700 class. There are a few PYTHON (.py) scripts that I attempted, and do not nessecarily work. Enjoy!
