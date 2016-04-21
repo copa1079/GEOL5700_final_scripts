@@ -4,7 +4,7 @@ Contains all of my MATLAB (.m) scripts for the computer modeling course GEOL5700
 
 Models are listed in temporal order and numbered. This repo contains 11 models, with various sub-models within each numbered file.
 
-Model 1  -- thermal diffusion
+Model 1  -- thermal diffusion \\
 Model 2  -- thermal diffusion continued
 Model 3  -- simple coral reef growth
 Model 4  -- hillslope diffusion and faulting
