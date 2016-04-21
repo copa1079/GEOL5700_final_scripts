@@ -8,6 +8,7 @@
 % Edited by Cole Pazar, April 2016, for playing around with 2D models
 %
 % go to: https://github.com/copa1079/cellular_automaton  for more outputs etc.
+% in this repo ^ I show a minimum in the time to equilibrium of the model for different porosities.
 %
 %% initialize code
 % constants
