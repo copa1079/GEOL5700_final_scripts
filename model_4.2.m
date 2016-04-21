@@ -103,21 +103,16 @@ for i=1:length(t)
      % faultstart=find(fault<=zb);
      % if t(i)==20000
         slip=ones(size(faultzone)).*vertslip;
-    
         for j=1:length(faultzone)
             if (zb(faultzone(j))+slip(j))<=fault(faultzone(j))
                 zb(faultzone(j))=fault(faultzone(j));
                 z(faultzone(j))=fault(faultzone(j));
                 H(faultzone(j))=0;
-            
             else
                 zb(faultzone(j))=zb(faultzone(j))+slip(j);
                 z(faultzone(j))=z(faultzone(j))+slip(j);  
-                
             end
-            
         end
-      
         end
    
     if(rem(t(i),tplot)==0)
@@ -152,11 +147,9 @@ for i=1:length(t)
     ylabel('Regolith thickness [m]','fontsize',18)
     set(gca,'fontsize',16)
     grid on
-    
     drawnow
     
     end
-   
 end
 
 %% end of code
