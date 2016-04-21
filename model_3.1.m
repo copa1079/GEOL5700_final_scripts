@@ -2,22 +2,9 @@
 %% COLE C. PAZAR GEOL 5700
 %%  UPDATED: 16:25:20 ON 2.2.2016
 
-% load Pleist_oxy.txt     % load a bunch of the delO18 record for Z_SL
-% load pleist_del18O.txt
-% load ox_200.txt
-% load yrs_200.txt
 figure(1)
 clf
 clearvars
-% figure(2)
-% clf
-% plot(yrs_200,-120*(ox_200-4),'b','linewidth',2)
-% hold on
-% plot(yrs_200,zeros(length(ox_200)),'k--')
-% set(gca,'fontsize',18,'fontname','arial')
-%        %title('coral reef growth model','fontname','arial','fontsize',18)
-%        xlabel('time (ka)','fontsize',18,'fontname','arial')
-%        ylabel('sea level (m)','fontname','arial','fontsize',18)
        
 step = 200;   %  essentially this is chooses your matrix size
 G_m  = 0.01; %  initial growth rate (m/yr)
