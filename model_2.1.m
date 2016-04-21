@@ -1,6 +1,5 @@
 %% Borehole Thermal Profiles in Cape Thompson, Alaska
-% This code takes real data and fits the thermal perturbation to the 
-% borehole data (figure 1), doing a chi-squared regression (figure 2)
+% This code takes real data and fits the thermal perturbation to the borehole data
 % Finite Difference Model FTCS Diffusion
 % Cole C. Pazar, GEOL5700, January 2016
 % with help from Robert S. Anderson
